@@ -32,6 +32,12 @@ class Role(models.Model):
     permissions = models.ManyToManyField("menu", blank=True, verbose_name="URL授权")
     desc = models.CharField(max_length=50, blank=True, null=True, verbose_name="描述")
 
+    class Meta:
+        verbose_name = '角色'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 class Structure(models.Model):
     """
@@ -70,4 +76,4 @@ class UserProfile(AbstractUser):
         ordering = ['id']
 
     def __str__(self):
-        return self.name
+        return self.username + ":" + self.mobile
